@@ -8,5 +8,5 @@ interface CoinRepository {
 
     fun getCoinDetail(fromSymbols: String): LiveData<CoinFullInfo>
 
-    suspend fun loadData()
+    fun loadData()
 }

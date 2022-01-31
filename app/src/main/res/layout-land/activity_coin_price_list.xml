@@ -22,6 +22,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="370dp" />
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/land_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         app:layout_constraintStart_toEndOf="@+id/guideline"

@@ -6,18 +6,22 @@ import androidx.lifecycle.Transformations
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
 import com.example.cryptoapp.data.database.AppDatabase
+import com.example.cryptoapp.data.database.CoinPriceInfoDao
 import com.example.cryptoapp.data.mapper.CoinMapper
-import com.example.cryptoapp.data.network.ApiFactory
 import com.example.cryptoapp.data.worker.RefreshDataWorker
 import com.example.cryptoapp.domain.CoinFullInfo
 import com.example.cryptoapp.domain.CoinRepository
-import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-class CoinRepositoryImpl(val application: Application) : CoinRepository {
+class CoinRepositoryImpl @Inject constructor(
+    val application: Application,
+    val mapper: CoinMapper,
+    var coinDao: CoinPriceInfoDao
+) : CoinRepository {
 
-    private val coinDao = AppDatabase.getInstance(application).coinPriceInfoDao()
+    //private val coinDao = AppDatabase.getInstance(application).coinPriceInfoDao()
 
-    private val mapper = CoinMapper()
+
 
 
     override fun getCoinList(): LiveData<List<CoinFullInfo>> {
